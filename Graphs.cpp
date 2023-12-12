@@ -239,6 +239,6 @@ void Graphs::DFS()
     }
 
     cout << "DFS Traversal" << endl;
-    for (int i = 0; i < V; i++)
+    for (int i = V-1; i >= 0; i--)
         cout << Vname(val[i]) << " ";
 }
