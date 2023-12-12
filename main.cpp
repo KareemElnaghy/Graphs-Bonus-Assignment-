@@ -31,7 +31,7 @@ void displaySample(Graphs Cities, string filename)
 
     int sourceVertex = 0;
 
-   //Cities.shPath(sourceVertex);
+   Cities.shPath(sourceVertex);
 
-  Cities.DFS();
+  //Cities.DFS();
 }
