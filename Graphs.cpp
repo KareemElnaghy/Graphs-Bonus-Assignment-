@@ -78,14 +78,14 @@ void Graphs::dispGraph() const
 }
 
 // Get Non-Zero edges from adjacency matrix
-// and store them in array edges[]. 
-void Graphs::getEdges()			
+// and store them in array edges[].
+void Graphs::getEdges()
 {
 	int r , c;
 	int i = 0;
 	weightType weight;
 
-	// Only examine weights above the diagonal 
+	// Only examine weights above the diagonal
 	for (r = 0; r <= V-2; r++)
 		for (c = r+1; c <= V-1; c++)
 		{
@@ -101,23 +101,23 @@ void Graphs::getEdges()
 		}
 
 	E = i;		// Number of non-zero edges
-	
+
 }
 
-// Get number of vertices (V)	
-int Graphs::No_of_Verices() const 				
+// Get number of vertices (V)
+int Graphs::No_of_Verices() const
 {
 	return V;
 }
 
 // Get Number of Non-zero edges (E)
-int Graphs::No_of_Edges() const 					
+int Graphs::No_of_Edges() const
 {
 	return E;
 }
 
 // Output an edge (e): Vertex names and weight
-void Graphs::printEdge(Edge e) const 			
+void Graphs::printEdge(Edge e) const
 {
 	cout << Vname(e.u) << " " << Vname(e.v) << " " << e.w << endl;
 }
@@ -126,7 +126,7 @@ void Graphs::printEdge(Edge e) const
 void Graphs::dispEdges() const
 {
 	cout<<"Graph Edges\n";
-	for (int i = 0; i < E; i++) 
+	for (int i = 0; i < E; i++)
 		printEdge(edges[i]);
 }
 
@@ -135,20 +135,21 @@ void Graphs::dispEdges() const
 void Graphs::shPath(int s)
 {
     int i,j;
-
+// Initialization: Set initial values for distance[], processed[], and via[] arrays
     for(i = 0; i < V; i++)
     {
         distance[i] = INT_MAX;
         processed[i] = 0;
         via[i] = -1;
     }
-
+// Set the distance of the source vertex to itself to 0
         distance[s] = 0;
-
+// Iterate through V-1 vertices (excluding the source)
     for(i = 0; i < V-1; i++)
     {
         int index;
         int minDist = INT_MAX;
+        // Find the vertex with the minimum distance among unprocessed vertices
         for(j=0; j < V; j++)
         {
             if(distance[j]<= minDist && !processed[j] )
@@ -157,16 +158,18 @@ void Graphs::shPath(int s)
                 index = j;
             }
         }
-        processed[index] = 1;
+        processed[index] = 1;  // Mark the selected vertex as processed
 
+        // Update distance[] and via[] for adjacent vertices
         for(j = 0; j<V; j++)
         {
+            // Relaxation step: Update distance[j] and via[j] if a shorter path is found
             if(AdjMatrix[index][j] && distance[index] != INT_MAX && !processed[j])
             {
                 if(distance[index] + AdjMatrix[index][j] < distance[j])
                 {
                     distance[j] = distance[index] + AdjMatrix[index][j];
-                    via[j] = index;
+                    via[j] = index; // Update the predecessor of vertex j
                 }
             }
 
@@ -204,31 +207,38 @@ void Graphs::visit(int k)
     }
 }
 
+// Depth First Search Visit Function
 void Graphs::dfsVisit(int vertex) {
 
+    // Mark the current vertex as processed
     processed[vertex] = 1;
 
+    // Explore neighbors of the current vertex
     for (int neighbor = 0; neighbor < V; ++neighbor) {
+        // Check if the neighbor is not processed and there is an edge between the current vertex and the neighbor
         if (!processed[neighbor] && AdjMatrix[vertex][neighbor] != 0) {
+            // Recursively visit the unprocessed neighbor
             dfsVisit(neighbor);
         }
     }
 
-    // Update the order of visit for the vertex
+    // Update the order of visit for the current vertex
     val[order++] = vertex;
 }
 
 // Depth First Search Traversal
-void Graphs::DFS()									
+void Graphs::DFS()
 {
-    order=0;
+    order = 0;
+
+    // Loop through vertices
     for (int i = 0; i < V; ++i) {
         if (!processed[i]) {
             dfsVisit(i);
         }
     }
 
-    cout<<"DFS Traversal"<<endl;
-    for(int i = 0; i<V; i++)
-        cout<<Vname(val[i])<<" ";
+    cout << "DFS Traversal" << endl;
+    for (int i = 0; i < V; i++)
+        cout << Vname(val[i]) << " ";
 }

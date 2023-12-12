@@ -46,7 +46,7 @@ class Graphs
 	int  No_of_Edges() const;		// Get Number of Non-zero edges (E)
 	void dispEdges() const;			// Display Graph edges
 	void DFS();				// Depth First Search Traversal (DFS)
-    void dfsVisit(int vertex);
+    void dfsVisit(int vertex);// Node Visit Function
 	void shPath(int s);			// Shortest paths from node (s)
 
 //______________________________________________________________________________________________
