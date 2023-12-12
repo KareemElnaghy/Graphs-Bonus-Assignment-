@@ -232,7 +232,7 @@ void Graphs::DFS()
     order = 0;
 
     // Loop through vertices
-    for (int i = 0; i < V; ++i) {
+    for (int i = 0; i < V; i++) {
         if (!processed[i]) {
             dfsVisit(i);
         }
