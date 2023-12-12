@@ -10,7 +10,7 @@ void displaySample(Graphs Cities, string filename);
 int main() {
 
     Graphs c;
-    displaySample(c, "cities.txt");
+    displaySample(c, "Test.txt");
 
 }
 
@@ -18,10 +18,10 @@ void displaySample(Graphs Cities, string filename)
 {
     cout<<"File: "<<filename<<endl;
 
-    Cities.getGraph("Test.txt");
+    Cities.getGraph(filename);
 
     cout<<"Number of Verticies = "<<Cities.No_of_Verices()<<endl;
-    cout<<"Number of Edges = "<<Cities.No_of_Edges()<<endl;
+    cout<<"Number of Edges = "<<Cities.No_of_Edges()<<endl<<endl;
 
     Cities.dispGraph();
     cout<<endl;
@@ -31,7 +31,7 @@ void displaySample(Graphs Cities, string filename)
 
     int sourceVertex = 0;
 
-   //Cities.shPath(sourceVertex);
+   Cities.shPath(sourceVertex);
 
-    Cities.DFS();
+//    Cities.DFS();
 }
